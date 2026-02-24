@@ -1,5 +1,6 @@
 const getAllUsers = (req, res) => {
     const data = {
+        id: 1,
         name: "Imamsaa",
         email: "imamsaa@example.com",
         password: "securepassword123"
@@ -21,7 +22,17 @@ const createNewUsers = (req, res) => {
     );
 }
 
+const updateUsers = (req, res) => {
+    res.status(200).json(
+        {
+            id : req.params.id,
+            message: "Hello Users Put Method",
+            data: req.body
+        })
+}
+
 export default{
     getAllUsers,
-    createNewUsers
+    createNewUsers,
+    updateUsers
 }
