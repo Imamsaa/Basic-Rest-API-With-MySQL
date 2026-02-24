@@ -1,7 +1,8 @@
 const getAllUsers = (req, res) => {
     res.status(200).json(
         {
-            message: "Hello Users Get Method"
+            message: "Hello Users Get Method",
+            data: req.body
         }
     );
 }
@@ -9,7 +10,8 @@ const getAllUsers = (req, res) => {
 const createNewUsers = (req, res) => {
     res.status(200).json(
         {
-            message: "Hello Users Post Method"
+            message: "Hello Users Post Method",
+            data: req.body
         }
     );
 }

@@ -1,8 +1,10 @@
 import express from "express";
 import userRouter from "./routes/users.js";
+import middlewareLogsRequest from "./middleware/logs.js";
 
 const app = express();
 
+app.use(middlewareLogsRequest);
 app.use("/users", userRouter);
 
 app.get("/", (req, res) => {
