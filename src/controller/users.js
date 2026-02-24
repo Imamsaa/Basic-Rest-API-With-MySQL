@@ -31,8 +31,23 @@ const updateUsers = (req, res) => {
         })
 }
 
+const deleteUsers = (req, res) => {
+    res.status(200).json(
+        {
+            id: req.params.id,
+            message: "Hello Users Delete Method",
+            data : {
+                id: req.params.id,
+                name: "Imamsaa",
+                email: "imamsaa@example.com",
+                password: "securepassword123"
+            }
+        })
+}
+
 export default{
     getAllUsers,
     createNewUsers,
-    updateUsers
+    updateUsers,
+    deleteUsers
 }
