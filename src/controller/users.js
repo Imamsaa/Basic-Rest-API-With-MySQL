@@ -1,8 +1,13 @@
 const getAllUsers = (req, res) => {
+    const data = {
+        name: "Imamsaa",
+        email: "imamsaa@example.com",
+        password: "securepassword123"
+    }
     res.status(200).json(
         {
-            message: "Hello Users Get Method",
-            data: req.body
+            message: "Hello Users Get Method Data Successfully",
+            data: data
         }
     );
 }
