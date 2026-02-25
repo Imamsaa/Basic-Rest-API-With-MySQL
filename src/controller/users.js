@@ -15,13 +15,19 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-const createNewUsers = (req, res) => {
-    res.status(200).json(
-        {
-            message: "Hello Users Post Method",
+const createNewUsers = async (req, res) => {
+    try {
+        const result = await userModel.createNewUsers(req.body);
+        res.status(201).json({
+            message: "User created successfully",
             data: req.body
-        }
-    );
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to create user",
+            details: error.message
+        });
+    }
 }
 
 const updateUsers = (req, res) => {
