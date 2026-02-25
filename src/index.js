@@ -9,6 +9,7 @@ const app = express();
 app.use(middlewareLogsRequest);
 app.use(express.json());
 app.use("/users", userRouter);
+app.use("/assets", express.static("public/images"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
