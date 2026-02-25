@@ -30,27 +30,45 @@ const createNewUsers = async (req, res) => {
     }
 }
 
-const updateUsers = (req, res) => {
-    res.status(200).json(
-        {
-            id : req.params.id,
-            message: "Hello Users Put Method",
-            data: req.body
-        })
+const updateUsers = async (req, res) => {
+    try {
+        const oldData = await userModel.getAllUsers(req.params.id);
+        if (oldData.length === 0) {
+            res.status(404).json({
+                error: "User not found"
+            });
+        }else{
+            const name = req.body.name || oldData[0].name;
+            const email = req.body.email || oldData[0].email;
+            const address = req.body.address || oldData[0].address;
+            const updatedData = { name, email, address };
+            const result = await userModel.updateUsers(req.params.id, updatedData);
+            res.status(200).json({
+                message: "User updated successfully",
+                data: updatedData
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to update user",
+            details: error.message
+        });
+    }
 }
 
-const deleteUsers = (req, res) => {
-    res.status(200).json(
-        {
+const deleteUsers = async (req, res) => {
+    try {
+        const result = await userModel.deleteUsers(req.params.id);
+        res.status(200).json({
             id: req.params.id,
-            message: "Hello Users Delete Method",
-            data : {
-                id: req.params.id,
-                name: "Imamsaa",
-                email: "imamsaa@example.com",
-                password: "securepassword123"
-            }
+            message: "User deleted successfully"
         })
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to delete user",
+            details: error.message
+        });
+    }
 }
 
 export default{
